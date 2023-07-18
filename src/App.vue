@@ -1,0 +1,32 @@
+<script>
+import { defineComponent } from 'vue'
+import Navbar from './components/Navbar/Navbar.vue'
+
+export default defineComponent({
+  components: {Navbar},
+  // created() {
+  //   // Clear stored resumes when the project starts
+  //   localStorage.removeItem('resumes');
+  // },
+})
+</script>
+
+<template>
+  <div class="body">
+    <Navbar />
+    <router-view />
+  </div>
+</template>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.body {
+  margin: 30px auto;
+  max-width:1400px;
+  width:100%;
+}
+</style>
