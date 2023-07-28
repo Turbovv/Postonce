@@ -42,7 +42,6 @@ export default defineComponent({
       const code = params.code;
 
       if (code) {
-        // Exchange the authorization code for an access token
         const clientId = '1118855498314289153';
         const clientSecret = '3oZ2s7HH1ZwkUND_ZH_ZHZ7dJWRIm8hR';
         const redirectUri = 'http://localhost:5173';
@@ -60,7 +59,6 @@ export default defineComponent({
           const response = await axios.post('https://discord.com/api/oauth2/token', queryString.stringify(data));
           const accessToken = response.data.access_token;
 
-          // Fetch user data using the access token
           const userResponse = await axios.get('https://discord.com/api/v10/users/@me', {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -73,7 +71,6 @@ export default defineComponent({
           console.error('Error:', error);
         }
       }
-
     },
     getUserAvatarUrl(avatar) {
       return `https://cdn.discordapp.com/avatars/${this.user.id}/${avatar}.png`;
@@ -81,6 +78,10 @@ export default defineComponent({
     handleLogout() {
       localStorage.removeItem('discordUser');
       this.user = null;
+      if(this.$router.push('/create')) {
+        this.$router.push('/')
+        window.location.reload();
+      }
       window.location.reload();
       this.$router.push('/')
     },
@@ -89,7 +90,6 @@ export default defineComponent({
     this.handleCallback();
   },
   created() {
-    // Check if user data is already stored in localStorage
     const storedUser = localStorage.getItem('discordUser');
     if (storedUser) {
       this.user = JSON.parse(storedUser);

@@ -82,7 +82,6 @@ export default defineComponent({
       </form>
     </div>
   </template>
-
 <style scoped>
 .submit-container {
   margin-top:50px;
