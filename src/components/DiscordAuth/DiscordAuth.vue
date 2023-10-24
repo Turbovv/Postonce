@@ -1,7 +1,5 @@
 <script>
-import {
-    defineComponent
-} from 'vue';
+import {defineComponent} from 'vue';
 import axios from 'axios';
 import queryString from 'query-string';
 import DiscordUser from '../DiscordUser/DiscordUser.vue'
