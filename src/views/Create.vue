@@ -1,12 +1,14 @@
 <script lang="ts">
 import CreateForm from '../components/CreateForm/CreateForm.vue'
 export default {
-  components: {CreateForm}
+    components: {
+        CreateForm
+    }
 }
 </script>
 
 <template>
 <div>
-  <CreateForm />
+    <CreateForm />
 </div>
 </template>
