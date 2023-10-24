@@ -4,6 +4,7 @@
     <button @click="login" v-if="!user">Authorize with Discord</button>
     <div v-if="user">
       <p>Log Out </p>
+      <!-- <DiscordUser :user="user" /> -->
       <img :src="getUserAvatarUrl(user.avatar)" alt="Discord avatar" />
     </div>
     <button @click="handleLogout" v-if="user">Logout</button>
@@ -14,8 +15,10 @@
 import { defineComponent } from 'vue';
 import axios from 'axios';
 import queryString from 'query-string';
+import DiscordUser from '../DiscordUser/DiscordUser.vue'
 
 export default defineComponent({
+  components: {DiscordUser},
   data() {
     return {
       user: null,
