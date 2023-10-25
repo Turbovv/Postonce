@@ -74,8 +74,6 @@ export default defineComponent({
                 this.$router.push('/')
                 window.location.reload();
             }
-            window.location.reload();
-            this.$router.push('/')
         },
     },
     mounted() {
