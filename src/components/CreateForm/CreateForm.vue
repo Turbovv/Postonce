@@ -18,6 +18,8 @@ export default defineComponent({
             errorMSG: false,
             timeout: null,
             userImageURL: '',
+            userName:'',
+            user: {}
         };
     },
     methods: {
@@ -28,12 +30,14 @@ export default defineComponent({
             }
 
             this.userImageURL = this.user.photoURL;
+            this.userName = this.user.displayName
 
             const resumeData = {
                 title: this.title,
                 description: this.description,
                 gif: this.selectedGif,
                 userImage: this.userImageURL,
+                userNameEmail: this.userName,
             };
 
             let existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
@@ -68,6 +72,12 @@ export default defineComponent({
                 this.searchGifs();
             }, 500)
         },
+    },
+    mounted() {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        this.user = JSON.parse(savedUser);
+      }
     },
     components: {
         Input,
@@ -108,7 +118,6 @@ export default defineComponent({
 }
 
 .submit {
-    border: 1px solid red;
     display: grid;
 }
 </style>

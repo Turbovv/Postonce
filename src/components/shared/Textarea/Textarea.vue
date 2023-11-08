@@ -12,6 +12,5 @@ export default {
 
 <style scoped>
 .v-textarea {
-    border: 1px solid red;
 }
 </style>

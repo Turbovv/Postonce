@@ -4,8 +4,8 @@
     <button @click="signInWithGoogle" v-if="!user">Authorize with Google</button>
     <div v-if="user">
       <p>{{ user.displayName }}</p>
-      <img :src="user.photoURL" alt="Profile Picture" />
     </div>
+    <img :src="user.photoURL" alt="Profile Picture" />
   </div>
   <button @click="signOut" v-if="user">Logout</button>
   </template>

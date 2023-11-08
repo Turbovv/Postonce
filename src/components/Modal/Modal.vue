@@ -16,7 +16,7 @@ export default {
 <template>
 <div class="text-center">
     <v-btn color="primary">
-        Open Dialog
+        Open 
 
         <v-dialog v-model="dialog" activator="parent" width="auto">
             <v-card>

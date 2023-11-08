@@ -12,6 +12,5 @@ export default {
 
 <style scoped>
 .v-text-field {
-    border: 1px solid blue;
 }
 </style>

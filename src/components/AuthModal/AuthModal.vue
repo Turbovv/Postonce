@@ -15,7 +15,6 @@ export default {
 <div class="text-center">
     <v-btn>
         Create
-
         <v-dialog v-model="dialog" activator="parent" width="auto">
             <v-card>
                 <v-card-text>

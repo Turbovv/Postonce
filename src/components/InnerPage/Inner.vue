@@ -35,13 +35,13 @@ export default defineComponent({
             <img :src="post.gif" alt="Selected GIF">
         </div>
         <img :src="post.userImage" alt="">
+        <pre>{{ post.userNameEmail }}</pre>
     </div>
 </div>
 </template>
   
 <style scoped>
 .post {
-    border: 1px solid red;
     line-height: 100px;
     margin-top: 50px;
 }
