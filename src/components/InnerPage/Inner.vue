@@ -34,6 +34,7 @@ export default defineComponent({
         <div v-if="post.gif">
             <img :src="post.gif" alt="Selected GIF">
         </div>
+        <img :src="post.userImage" alt="">
     </div>
 </div>
 </template>

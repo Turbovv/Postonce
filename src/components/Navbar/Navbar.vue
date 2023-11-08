@@ -15,7 +15,7 @@ export default defineComponent({
         };
     },
     created() {
-        const storedUser = localStorage.getItem('discordUser');
+        const storedUser = localStorage.getItem('user');
         if (storedUser) {
             this.user = JSON.parse(storedUser);
         }
@@ -46,7 +46,6 @@ export default defineComponent({
             <router-link to="/create">
                 <h2>Create</h2>
             </router-link>
-            <img :src="getUserAvatarUrl(user.avatar)" alt="Discord avatar" />
         </template>
         <button @click="showModal" v-else>
             <AuthModal /></button>

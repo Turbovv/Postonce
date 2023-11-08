@@ -5,6 +5,7 @@ import {
 import GiphyAPI from '../../services/GiphyAPI'
 import Input from '../shared/Input/Input.vue'
 import Textarea from '../shared/Textarea/Textarea.vue'
+import GoogleAuth from '../GoogleAuth/GoogleAuth.vue';
 
 export default defineComponent({
     data() {
@@ -15,7 +16,8 @@ export default defineComponent({
             searchQuery: '',
             gifs: {},
             errorMSG: false,
-            timeout: null
+            timeout: null,
+            userImageURL: '',
         };
     },
     methods: {
@@ -24,10 +26,14 @@ export default defineComponent({
                 this.errorMSG = true
                 return
             }
+
+            this.userImageURL = this.user.photoURL;
+
             const resumeData = {
                 title: this.title,
                 description: this.description,
                 gif: this.selectedGif,
+                userImage: this.userImageURL,
             };
 
             let existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
@@ -65,7 +71,8 @@ export default defineComponent({
     },
     components: {
         Input,
-        Textarea
+        Textarea,
+        GoogleAuth, 
     }
 })
 </script>

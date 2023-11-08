@@ -32,7 +32,10 @@ export default defineComponent({
         <div v-if="post.gif" class="post-image">
             <img :src="post.gif" alt="Selected GIF" @click="navigateToInner(index)">
         </div>
+       <div class="d-flex ">
         <h1>{{ post.title }}</h1>
+        <img :src="post.userImage" alt="">
+        </div>
     </div>
 </div>
 </template>
@@ -53,7 +56,12 @@ export default defineComponent({
     width: 100%;
     height: 100%;
 }
-
+.d-flex {
+    justify-content: space-between;
+}
+.d-flex img{
+    border-radius: 50%;
+}
 @media only screen and (max-width:1400px) {
     .post-container {
         grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));

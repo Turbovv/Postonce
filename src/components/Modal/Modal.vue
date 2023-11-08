@@ -1,9 +1,9 @@
 <script>
-import DiscordAuth from '../DiscordAuth/DiscordAuth.vue';
+import GoogleAuth from '../GoogleAuth/GoogleAuth.vue';
 
 export default {
     components: {
-        DiscordAuth
+        GoogleAuth
     },
     data() {
         return {
@@ -21,7 +21,7 @@ export default {
         <v-dialog v-model="dialog" activator="parent" width="auto">
             <v-card>
                 <v-card-text>
-                    <DiscordAuth class="mb-4" />
+                    <GoogleAuth class="mb-4" />
                 </v-card-text>
                 <v-card-actions>
                     <v-btn color="primary" block @click="dialog = false">Nevermind</v-btn>
