@@ -98,8 +98,8 @@ export default defineComponent({
         <Textarea :value="description" @update:value="description = $event" />
         <label for="gif">Choose a GIF:</label>
         <input  type="text" id="gif" v-model="searchQuery" placeholder="Search for a GIF" @input="onInput" autocomplete="off">
-        <div v-if="gifs.length">
-          <ul>
+        <div v-if="gifs.length" class="gif">
+          <ul  class="gif-container">
             <li v-for="(gif, index) in gifs" :key="index" @click="selectGif(gif.images.original.url)">
               <img :src="gif.images.fixed_height.url" :alt="gif.title">
             </li>
@@ -119,5 +119,17 @@ export default defineComponent({
 
 .submit {
     display: grid;
+}
+.gif-container {
+/* display: flex; */
+/* flex-wrap: wrap; */
+margin-top:20px;
+display: grid;
+grid-template-columns: auto auto auto auto;
+gap:60px;
+}
+.gif-container img {
+    width:300px;
+    height:100%;
 }
 </style>
