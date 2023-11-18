@@ -21,7 +21,7 @@ export default {
         <v-dialog v-model="dialog" activator="parent" width="auto">
             <v-card>
                 <v-card-text>
-                    <GoogleAuth class="mb-4" />
+                    <GoogleAuth />
                 </v-card-text>
                 <v-card-actions>
                     <v-btn color="primary" block @click="dialog = false">Nevermind</v-btn>
