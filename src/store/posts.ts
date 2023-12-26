@@ -10,11 +10,11 @@ export const usePostsStore = defineStore({
       const existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
       this.posts = existingResumes;
     },
-    addPost(postData: any) {
+    addPost(postData: string) {
       this.posts.push(postData);
       localStorage.setItem('resumes', JSON.stringify(this.posts));
     },
-    getPostById(id: any) {
+    getPostById(id: number) {
       return this.posts[id];
     },
   },
