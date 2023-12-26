@@ -6,10 +6,12 @@ import GiphyAPI from '../../services/GiphyAPI'
 import Input from '../shared/Input/Input.vue'
 import Textarea from '../shared/Textarea/Textarea.vue'
 import GoogleAuth from '../GoogleAuth/GoogleAuth.vue';
+import { usePostsStore } from '../../store/posts';
 
 export default defineComponent({
     data() {
         return {
+            postsStore: usePostsStore(),
             title: '',
             description: '',
             selectedGif: '',
@@ -40,12 +42,9 @@ export default defineComponent({
                 userNameEmail: this.userName,
             };
 
-            let existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
+             this.postsStore.addPost(resumeData);
 
-            existingResumes.push(resumeData);
-
-            localStorage.setItem('resumes', JSON.stringify(existingResumes));
-            const newIndex = existingResumes.length - 1;
+            const newIndex = this.postsStore.posts.length - 1;
             this.$router.push({
                 name: 'inner',
                 params: {

@@ -1,19 +1,17 @@
 <script>
 import {defineComponent} from 'vue'
+import { usePostsStore } from '../../store/posts';
 export default defineComponent({
     data() {
         return {
-            posts: {},
+            postsStore: usePostsStore(),
+            posts: usePostsStore().$state.posts
         };
     },
     created() {
-        this.fetchResumes();
+        this.postsStore.fetchPosts();
     },
     methods: {
-        fetchResumes() {
-            const existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
-            this.posts = existingResumes;
-        },
         navigateToInner(index) {
             this.$router.push({
                 name: 'inner',
