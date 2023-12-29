@@ -2,12 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCrwNtygod6wC3dwnc7MGhwsVkUrc_AQ_k',
-  authDomain: 'postonce-ed9fb.firebaseapp.com',
-  projectId: 'postonce-ed9fb',
-  storageBucket: 'postonce-ed9fb.appspot.com',
-  messagingSenderId: '594951104884',
-  appId: '1:594951104884:web:c2b763709e04e6bd8c2421',
+  apiKey: "AIzaSyDDpVZw_Es_bCyTK00kiu053UE1QgWgmms",
+  authDomain: "postonce-36346.firebaseapp.com",
+  projectId: "postonce-36346",
+  storageBucket: "postonce-36346.appspot.com",
+  messagingSenderId: "891985361865",
+  appId: "1:891985361865:web:0fd5966844f33e27548618",
+  measurementId: "G-RM6FMMDHY4"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
