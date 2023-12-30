@@ -1,17 +1,19 @@
 <script>
 import {defineComponent} from 'vue'
-import { usePostsStore } from '../../store/posts';
 export default defineComponent({
     data() {
         return {
-            postsStore: usePostsStore(),
-            posts: usePostsStore().$state.posts
+            posts: {},
         };
     },
     created() {
-        this.postsStore.fetchPosts();
+        this.fetchResumes();
     },
     methods: {
+        fetchResumes() {
+            const existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
+            this.posts = existingResumes;
+        },
         navigateToInner(index) {
             this.$router.push({
                 name: 'inner',
@@ -33,10 +35,10 @@ export default defineComponent({
        <div class="d-flex ">
         <h1>{{ post.title }}</h1>
         <img :src="post.userImage" alt="">
-        </div>
+    </div>
     </div>
 </div>
-</template>
+</template> 
 
 <style scoped>
 .post-container {

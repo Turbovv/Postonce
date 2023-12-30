@@ -2,12 +2,10 @@
 import {
     defineComponent
 } from 'vue'
-import { usePostsStore } from '../../store/posts';
 export default defineComponent({
     data() {
         return {
             post: {},
-            postsStore: usePostsStore(),
         };
     },
     created() {
@@ -16,12 +14,13 @@ export default defineComponent({
     methods: {
         fetchPost() {
             const id = this.$route.params.id;
-            this.post = this.postsStore.getPostById(id);
+            const existingPosts = JSON.parse(localStorage.getItem('resumes') || '[]');
 
-
-            if (!this.post) {
+            if (id >= 0 && id < existingPosts.length) {
+                this.post = existingPosts[id];
+            } else {
                 this.$router.push('/');
-            } 
+            }
         },
     },
 })

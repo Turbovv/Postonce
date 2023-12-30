@@ -12,7 +12,7 @@
   
   <script>
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
-  import { firebaseApp }from '../../services/firebase';
+  import { firebaseApp } from '../../services/firebase';
   
   export default {
     data() {
@@ -56,4 +56,3 @@
     },
   };
   </script>
-  
