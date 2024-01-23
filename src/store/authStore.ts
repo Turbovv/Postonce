@@ -29,6 +29,7 @@ export const useAuthStore = defineStore('auth', {
         console.error('Google sign-in failed:', error);
       }
       window.location.reload();
+
     },
     async signOut() {
       const auth = getAuth(firebaseApp);
