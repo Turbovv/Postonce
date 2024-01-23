@@ -2,6 +2,9 @@
 import {defineComponent} from 'vue';
 import AuthModal from '../AuthModal/AuthModal.vue'
 import Modal from '../Modal/Modal.vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { firebaseApp } from '../../services/firebase';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 export default defineComponent({
     components: {
@@ -14,12 +17,25 @@ export default defineComponent({
             Modal: false,
         };
     },
-    created() {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            this.user = JSON.parse(storedUser);
-        }
-    },
+    mounted() {
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.user = user;
+
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', user.uid);
+        setDoc(userDocRef, {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+      } else {
+        this.user = null;
+      }
+    });
+  },
     methods: {
         showModal() {
             if (!this.user) {
@@ -43,6 +59,7 @@ export default defineComponent({
             <h2 class="mr-3">Posts</h2>
         </router-link>
         <template v-if="user">
+            <!-- <img :src="user.photoURL" alt=""> -->
             <router-link to="/create">
                 <h2>Create</h2>
             </router-link>
@@ -50,7 +67,8 @@ export default defineComponent({
         <button @click="showModal" v-else>
             <AuthModal /></button>
     </div>
-    <Modal />
+    <Modal  />
+
 </div>
 </template>
 

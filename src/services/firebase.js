@@ -1,21 +1,17 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection } from 'firebase/firestore';
 
-// Get a Firestore instance
-
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyB6U_EMrZpVPTVvEBCJ6khsF5cYx_9y4o4",
   authDomain: "postonce-f68b9.firebaseapp.com",
   projectId: "postonce-f68b9",
   storageBucket: "postonce-f68b9.appspot.com",
   messagingSenderId: "274444771451",
   appId: "1:274444771451:web:c4fc1cef9a97a9913942de",
-  measurementId: "G-1HVFGG1E9M"
 };
 
-export const db = firebase.initializeApp(firebaseConfig).firestore();
+const firebaseApp = initializeApp(firebaseConfig);
+const firestore = getFirestore(firebaseApp);
+const citiesColRef = collection(firestore, "posts");
 
-// Export types that exists in Firestore
-// This is not always necessary, but it's used in other examples
-const { Timestamp, GeoPoint } = firebase.firestore;
-export { Timestamp, GeoPoint };
+export { firebaseApp, firestore, citiesColRef };

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import {
     defineComponent
 } from 'vue'
@@ -51,4 +51,36 @@ export default defineComponent({
     line-height: normal;
     font-weight: 800;
 }
-</style>
+</style> -->
+
+<!-- CityDetail.vue -->
+<template>
+  <div>
+    <h2>{{ post.title }}</h2>
+    <p> {{ post.description }}</p>
+    <div v-if="post.gif">
+        <img :src="post.gif" alt="Selected GIF">
+    </div>
+    <img :src="post.userImage" alt="">
+    <p>{{ post.userNameEmail }}</p>
+</div>
+</template>
+
+<script>
+import { citiesColRef } from "../../services/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+export default {
+  data() {
+    return {
+      post: {},
+    };
+  },
+  async created() {
+    const cityId = this.$route.params.id;
+    const cityRef = doc(citiesColRef, cityId);
+    const citySnapShot = await getDoc(cityRef);
+    this.post = citySnapShot.data();
+  },
+};
+</script>
