@@ -79,11 +79,13 @@ export default defineComponent({
     <div  class="post-container">
         <div v-for="post in posts" :key="post.id">
             <div v-if="post.gif" class="post-image">
+               <router-link :to="{path: `/post/${post.id}`}">
                 <img :src="post.gif" alt="Selected GIF">
+            </router-link>
             </div>
           <div class="d-flex">
             <router-link :to="{ path: `/post/${post.id}` }">
-                {{ post.title }}
+               <p class="my-5 no-underline">{{ post.title }}</p>
             </router-link>
             <img :src="post.userImage" alt="">
           </div>
@@ -138,15 +140,16 @@ export default defineComponent({
 
 .d-flex {
     justify-content: space-between;
+    margin-left: 10px;
 }
-
 .d-flex img {
     border-radius: 50%;
+    width:70px;
 }
-
 @media only screen and (max-width:1400px) {
     .post-container {
         grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     }
 }
-</style> -->
+
+</style>

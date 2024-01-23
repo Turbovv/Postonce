@@ -50,47 +50,52 @@ export default defineComponent({
 </script>
 
 <template>
-<div class="d-flex justify-between items-center">
+<div class="space-between d-flex">
     <router-link to="/">
         <h2>Postonce</h2>
     </router-link>
-    <div class="d-flex">
+    <div class="mobile">
         <router-link to="/">
             <h2 class="mr-3">Posts</h2>
         </router-link>
-        <template v-if="user">
-            <!-- <img :src="user.photoURL" alt=""> -->
+        <div v-if="user">
             <router-link to="/create">
                 <h2>Create</h2>
             </router-link>
-        </template>
+        </div>
         <button @click="showModal" v-else>
             <AuthModal /></button>
-    </div>
-    <Modal  />
+        </div>
+        <Modal  />
+        <!-- <img :src="user.photoURL" alt=""> -->
 
 </div>
 </template>
 
 
 <style scoped>
+
 .space-between {
-    justify-content: space-between;
+   justify-content: space-between;
 }
-
-.d-flex {
-    display: flex;
-    height: 10%;
-    gap: 15px;
-    justify-content: center;
-    margin: 0 auto;
-}
-
 .d-flex h2:focus {
     color: blue;
 }
-
-* {
-    text-decoration: none;
+@media only screen and (max-width:500px) {
+    .mobile {
+    display: grid;
+    }
+    .space-between {
+        width:350px;
+        display: grid;
+        margin: 0 auto;
+    }
 }
+@media only screen and (min-width:500px) {
+    .mobile {
+    display: flex;
+    margin-bottom: auto;
+    }
+}
+
 </style>
