@@ -1,4 +1,3 @@
-// src/store/auth.js
 import { defineStore } from 'pinia';
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
