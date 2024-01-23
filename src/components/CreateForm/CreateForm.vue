@@ -1,19 +1,38 @@
-<!-- 
+<template>
+<div class="submit-container">
+    <form @submit.prevent="submitForm" class="submit-form">
+        <div class="input">
+            <input type="text" class="form-input" placeholder="Title" v-model="title" />
+            <input type="text" class="form-input" placeholder="Description" v-model="description" />
+        </div>
+        <label for="gif" class="label">Choose a GIF:</label>
+        <input type="text" id="gif" v-model="searchQuery" placeholder="Search for a GIF" @input="onInput" autocomplete="off" class="form-input" />
+        <div v-if="gifs.length" class="gif-container">
+            <ul class="gif-list">
+                <li v-for="(gif, index) in gifs" :key="index" @click="selectGif(gif.images.original.url)" class="gif-item">
+                    <img :src="gif.images.fixed_height.url" :alt="gif.title" class="gif-img" />
+                </li>
+            </ul>
+        </div>
+        <button type="submit" class="btn-save">Save</button>
+        <p v-if="errorMSG" class="error-msg">Nope.</p>
+    </form>
+</div>
+</template>
 
+  
 <script>
-import {
-    defineComponent
-} from 'vue'
 import GiphyAPI from '../../services/GiphyAPI'
-import Input from '../shared/Input/Input.vue'
-import Textarea from '../shared/Textarea/Textarea.vue'
-import GoogleAuth from '../GoogleAuth/GoogleAuth.vue';
-
-export default defineComponent({
+import { citiesColRef } from "../../services/firebase";
+import { addDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { firebaseApp } from '../../services/firebase';
+import { getFirestore,doc, setDoc } from 'firebase/firestore';
+export default {
     data() {
         return {
-            title: '',
-            description: '',
+            title: null,
+            description: null,
             selectedGif: '',
             searchQuery: '',
             gifs: {},
@@ -21,39 +40,28 @@ export default defineComponent({
             timeout: null,
             userImageURL: '',
             userName: '',
-            user: {}
-        };
+        }
     },
     methods: {
-        submitForm() {
+        async submitForm() {
             if (!this.title || !this.description || !this.selectedGif) {
                 this.errorMSG = true
                 return
             }
-
             this.userImageURL = this.user.photoURL;
             this.userName = this.user.displayName
 
-            const resumeData = {
+            const postData = {
                 title: this.title,
                 description: this.description,
                 gif: this.selectedGif,
                 userImage: this.userImageURL,
                 userNameEmail: this.userName,
             };
-
-            let existingResumes = JSON.parse(localStorage.getItem('resumes') || '[]');
-
-            existingResumes.push(resumeData);
-
-            localStorage.setItem('resumes', JSON.stringify(existingResumes));
-            const newIndex = existingResumes.length - 1;
-            this.$router.push({
-                name: 'inner',
-                params: {
-                    id: newIndex.toString()
-                }
+            const addedDoc = await addDoc(citiesColRef, {
+                ...postData
             });
+            this.$router.push("/");
         },
         async searchGifs() {
             try {
@@ -76,224 +84,93 @@ export default defineComponent({
         },
     },
     mounted() {
-        const savedUser = localStorage.getItem('user');
-        if (savedUser) {
-            this.user = JSON.parse(savedUser);
-        }
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user;
+
+                const db = getFirestore();
+                const userDocRef = doc(db, 'users', user.uid);
+                setDoc(userDocRef, {
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                });
+            } else {
+                this.user = null;
+            }
+        });
     },
-    components: {
-        Input,
-        Textarea,
-        GoogleAuth,
-    }
-})
+};
 </script>
 
-<template>
-<div class="submit-container">
-    <form @submit.prevent="submitForm" class="submit">
-        <div class="input">
-            <label for="title">Title</label>
-            <Input class="child" :value="title" @update:value="title = $event" />
-        </div>
-        <label for="experience">Description:
-        </label> <Textarea :value="description" @update:value="description = $event" />
-        <label for="gif">Choose a GIF:</label>
-            <input type="text" id="gif" v-model="searchQuery" placeholder="Search for a GIF" @input="onInput" autocomplete="off">
-            <div v-if="gifs.length" class="gif">
-                <ul class="gif-container">
-                    <li v-for="(gif, index) in gifs" :key="index" @click="selectGif(gif.images.original.url)">
-                        <img :src="gif.images.fixed_height.url" :alt="gif.title">
-                    </li>
-                </ul>
-            </div>
-            <button type="submit">Save</button>
-            <p v-if="errorMSG">SHEAVSE YVELA!!!</p>
-    </form>
-</div>
-
-</template> -->
-
-<template>
-    <div class="submit-container">
-      <form @submit.prevent="submitForm" class="submit-form">
-        <div class="input">
-          <input type="text" class="form-input" placeholder="Title" v-model="title" />
-          <input type="text" class="form-input" placeholder="Description" v-model="description" />
-        </div>
-        <label for="gif" class="label">Choose a GIF:</label>
-        <input
-          type="text"
-          id="gif"
-          v-model="searchQuery"
-          placeholder="Search for a GIF"
-          @input="onInput"
-          autocomplete="off"
-          class="form-input"
-        />
-        <div v-if="gifs.length" class="gif-container">
-          <ul class="gif-list">
-            <li v-for="(gif, index) in gifs" :key="index" @click="selectGif(gif.images.original.url)" class="gif-item">
-              <img :src="gif.images.fixed_height.url" :alt="gif.title" class="gif-img" />
-            </li>
-          </ul>
-        </div>
-        <button type="submit" class="btn-save">Save</button>
-        <p v-if="errorMSG" class="error-msg">SHEAVSE YVELA!!!</p>
-      </form>
-    </div>
-  </template>
-
-
-  <script>
-  import GiphyAPI from '../../services/GiphyAPI'
-  import { citiesColRef } from "../../services/firebase";
-  import { addDoc } from "firebase/firestore";
-  import { getAuth, onAuthStateChanged } from 'firebase/auth';
-  import { firebaseApp } from '../../services/firebase';
-  import { getFirestore, doc, setDoc } from 'firebase/firestore';
-  export default {
-    data() {
-      return {
-        title: null,
-        description: null,
-        selectedGif: '',
-        searchQuery: '',
-        gifs: {},
-        errorMSG: false,
-        timeout: null,
-        userImageURL: '',
-        userName:'',
-      }
-    },
-    methods: {
-      async submitForm() {
-    if (!this.title || !this.description || !this.selectedGif) {
-      this.errorMSG = true
-      return
-    }
-        this.userImageURL = this.user.photoURL;
-        this.userName = this.user.displayName
-
-    const postData = {
-        title: this.title,
-        description: this.description,
-        gif: this.selectedGif,
-        userImage: this.userImageURL,
-        userNameEmail: this.userName,
-  };
-    const addedDoc = await addDoc(citiesColRef,{...postData });
-    this.$router.push("/");
-  },
-        async searchGifs() {
-            try {
-                const response = await GiphyAPI.getGiphyData(this.searchQuery)
-                this.gifs = response.data.data
-                console.log(response.data)
-            } catch (error) {
-                console.log(error)
-            }
-        },
-        selectGif(gifUrl) {
-            this.selectedGif = gifUrl;
-            this.gifs = [];
-        },
-        onInput() {
-            clearTimeout(this.timeout)
-            this.timeout = setTimeout(() => {
-                this.searchGifs();
-            }, 500)
-        },
-    },
-    mounted() {
-    const auth = getAuth();
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.user = user;
-
-        const db = getFirestore();
-        const userDocRef = doc(db, 'users', user.uid);
-        setDoc(userDocRef, {
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        });
-      } else {
-        this.user = null;
-      }
-    });
-  },
-  };
-  </script>
-
-
 <style scoped>
-  .submit-container {
+.submit-container {
     margin-top: 50px;
-  }
+}
 
-  .submit-form {
+.submit-form {
     border-radius: 8px;
     padding: 20px;
     margin: 0 auto;
-  }
+}
 
-  .input {
+.input {
     margin-bottom: 20px;
     display: flex;
     gap: 50px;
-  }
+}
 
-  .form-input {
+.form-input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
-  }
+}
 
-  .label {
+.label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-  }
+}
 
-  .gif-container {
+.gif-container {
     margin-bottom: 20px;
-  }
+}
 
-  .gif-list {
+.gif-list {
     list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-  }
+}
 
-  .gif-item {
+.gif-item {
     cursor: pointer;
     margin-right: 10px;
     margin-bottom: 10px;
-  }
+}
 
-  .gif-img {
+.gif-img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 8px;
-  }
+}
 
-  .btn-save {
+.btn-save {
     background-color: #4caf50;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+}
 
-  .error-msg {
+.error-msg {
     color: red;
-  }
+}
 </style>
