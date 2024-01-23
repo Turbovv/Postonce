@@ -1,5 +1,5 @@
 <script>
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import AuthModal from '../AuthModal/AuthModal.vue'
 import Modal from '../Modal/Modal.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
@@ -18,24 +18,24 @@ export default defineComponent({
         };
     },
     mounted() {
-    const auth = getAuth();
+        const auth = getAuth();
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.user = user;
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user;
 
-        const db = getFirestore();
-        const userDocRef = doc(db, 'users', user.uid);
-        setDoc(userDocRef, {
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
+                const db = getFirestore();
+                const userDocRef = doc(db, 'users', user.uid);
+                setDoc(userDocRef, {
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                });
+            } else {
+                this.user = null;
+            }
         });
-      } else {
-        this.user = null;
-      }
-    });
-  },
+    },
     methods: {
         showModal() {
             if (!this.user) {
@@ -65,36 +65,37 @@ export default defineComponent({
         </div>
         <button @click="showModal" v-else>
             <AuthModal /></button>
-        </div>
-        <Modal  />
+    </div>
+    <Modal />
 
 </div>
 </template>
 
-
 <style scoped>
-
 .space-between {
-   justify-content: space-between;
+    justify-content: space-between;
 }
+
 .d-flex h2:focus {
     color: blue;
 }
+
 @media only screen and (max-width:500px) {
     .mobile {
-    display: grid;
+        display: grid;
     }
+
     .space-between {
-        width:350px;
+        width: 350px;
         display: grid;
         margin: 0 auto;
     }
 }
+
 @media only screen and (min-width:500px) {
     .mobile {
-    display: flex;
-    margin-bottom: auto;
+        display: flex;
+        margin-bottom: auto;
     }
 }
-
 </style>
