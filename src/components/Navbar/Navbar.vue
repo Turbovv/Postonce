@@ -67,7 +67,6 @@ export default defineComponent({
             <AuthModal /></button>
         </div>
         <Modal  />
-        <!-- <img :src="user.photoURL" alt=""> -->
 
 </div>
 </template>
