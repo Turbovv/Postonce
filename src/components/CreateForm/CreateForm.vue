@@ -27,6 +27,8 @@ import { addDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firebaseApp } from '../../services/firebase';
 import { getFirestore,doc, setDoc } from 'firebase/firestore';
+import JSConfetti from 'js-confetti'
+const confetti = new JSConfetti()
 
 export default {
     data() {
@@ -62,6 +64,7 @@ export default {
                 ...postData
             });
             this.$router.push("/");
+            confetti.addConfetti()
         },
         async searchGifs() {
             try {
