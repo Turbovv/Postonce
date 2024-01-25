@@ -82,10 +82,7 @@ export default {
       padding: 10px;
     }
 
-    .user-info {
-      flex-direction: column;
-      align-items: center;
-    }
+  
 
     .user-info p {
       margin-bottom: 5px;
