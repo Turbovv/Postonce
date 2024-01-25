@@ -19,7 +19,6 @@
     </form>
 </div>
 </template>
-
   
 <script>
 import GiphyAPI from '../../services/GiphyAPI'
@@ -28,6 +27,7 @@ import { addDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firebaseApp } from '../../services/firebase';
 import { getFirestore,doc, setDoc } from 'firebase/firestore';
+
 export default {
     data() {
         return {
