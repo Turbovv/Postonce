@@ -65,6 +65,7 @@ export default {
 .d-flex {
     justify-content: space-between;
     margin-left: 10px;
+    margin-right:10px;
 }
 
 .d-flex img {
