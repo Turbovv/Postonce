@@ -4,10 +4,6 @@ import Navbar from './components/Navbar/Navbar.vue'
 
 export default defineComponent({
   components: {Navbar},
-  // created() {
-  //   // Clear stored resumes when the project starts
-  //   localStorage.removeItem('resumes');
-  // },
 })
 </script>
 
