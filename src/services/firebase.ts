@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB6U_EMrZpVPTVvEBCJ6khsF5cYx_9y4o4",
-  authDomain: "postonce-f68b9.firebaseapp.com",
-  projectId: "postonce-f68b9",
-  storageBucket: "postonce-f68b9.appspot.com",
-  messagingSenderId: "274444771451",
-  appId: "1:274444771451:web:c4fc1cef9a97a9913942de",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

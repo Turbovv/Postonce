@@ -22,6 +22,7 @@ export default {
   methods: {
     async signInWithGoogle() {
       await this.authStore.signInWithGoogle();
+      this.$router.push("/create")
     },
     async signOut() {
       await this.authStore.signOut();
