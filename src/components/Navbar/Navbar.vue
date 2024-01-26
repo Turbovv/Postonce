@@ -64,7 +64,8 @@ export default defineComponent({
             </router-link>
         </div>
         <button @click="showModal" v-else>
-            <AuthModal /></button>
+            <AuthModal />
+        </button>
     </div>
     <Modal />
 

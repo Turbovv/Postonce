@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiKey = 'j8xGCQElHY1xbE64wNZUoVeMohcYRwb8';
+const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
 
 const baseUrl: string = 'https://api.giphy.com/v1/gifs/search?api_key='
 
