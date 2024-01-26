@@ -81,18 +81,6 @@ export default defineComponent({
     color: blue;
 }
 
-@media only screen and (max-width:500px) {
-    .mobile {
-        display: grid;
-    }
-
-    .space-between {
-        width: 350px;
-        display: grid;
-        margin: 0 auto;
-    }
-}
-
 @media only screen and (min-width:500px) {
     .mobile {
         display: flex;

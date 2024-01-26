@@ -115,7 +115,6 @@ export default {
 .submit-form {
     border-radius: 8px;
     padding: 20px;
-    margin: 0 auto;
 }
 
 .input {
