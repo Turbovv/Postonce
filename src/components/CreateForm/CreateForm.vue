@@ -70,7 +70,6 @@ export default {
             try {
                 const response = await GiphyAPI.getGiphyData(this.searchQuery)
                 this.gifs = response.data.data
-                console.log(response.data)
             } catch (error) {
                 console.log(error)
             }
