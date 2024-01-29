@@ -67,12 +67,16 @@ export default defineComponent({
             <AuthModal />
         </button>
     </div>
-    <Modal />
-
+    <div :class="{ disabled: !user }">
+      <Modal />
+    </div>
 </div>
 </template>
 
 <style scoped>
+.disabled {
+    pointer-events: none;
+}
 .space-between {
     justify-content: space-between;
 }
