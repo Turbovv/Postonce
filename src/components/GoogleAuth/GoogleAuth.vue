@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1 v-if="!authStore.isAuthenticated">Wanna Authorize?</h1>
+   <div class="google-button" >
     <button @click="signInWithGoogle" v-if="!authStore.isAuthenticated">Authorize with Google 
-      <img class="google-button"  width="22" height="22" src="https://img.icons8.com/color/33/google-logo.png" alt="google-logo"/>
     </button>
+    <img   width="22" height="22" src="https://img.icons8.com/color/33/google-logo.png" alt="google-logo"/>
+   </div>
     <div v-if="authStore.isAuthenticated">
       <p>{{ authStore.user.displayName }}</p>
       <img :src="authStore.user.photoURL" alt="Profile Picture" />
@@ -24,6 +26,7 @@ export default {
   methods: {
     async signInWithGoogle() {
       await this.authStore.signInWithGoogle();
+      this.$router.push("/create")
     },
     async signOut() {
       await this.authStore.signOut();
@@ -36,6 +39,7 @@ export default {
 </script>
 <style scoped>
 .google-button {
-  transform: translateY(5px);
+  display: flex;
+  align-items: center;
 }
 </style>
