@@ -16,10 +16,9 @@
 </div>
 </template>
 
-  
 <script>
 import { citiesColRef } from "../../services/firebase";
-import { getDocs, doc, deleteDoc} from "firebase/firestore";
+import { getDocs} from "firebase/firestore";
 export default {
     data() {
         return {
@@ -38,7 +37,6 @@ export default {
             this.posts = cities;
         }
     },
-
     created() {
         this.fetchCities();
     },
@@ -52,27 +50,19 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
     gap: 25px;
 }
-
 .posts {
     height: 15rem;
 }
-
 .posts img {
     width: 100%;
     height: 100%;
 }
-
 .d-flex {
     justify-content: space-between;
 }
-
 .d-flex img {
     border-radius: 50%;
     max-width: 70px;
-}
- p{
-    max-width:400px;
-    border: 1px solid red;
 }
 @media only screen and (max-width:1400px) {
     .post-container {

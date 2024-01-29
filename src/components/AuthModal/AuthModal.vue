@@ -10,7 +10,6 @@ export default {
 };
 </script>
 
-
 <template>
 <div class="text-center">
     <v-btn>
