@@ -22,8 +22,8 @@ export default defineComponent({
   text-decoration: none;
 }
 .body {
-  margin: 30px auto;
+  margin: 0 auto;
+  margin-top: 30px;
   max-width:1400px;
-  width:100%;
 }
 </style>

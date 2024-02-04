@@ -69,4 +69,9 @@ export default {
         grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     }
 }
+@media only screen and (max-width:500px) {
+    .post-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
 </style>
