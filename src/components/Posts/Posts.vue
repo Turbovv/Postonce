@@ -1,5 +1,5 @@
 <template>
-<div class="post-container">
+<div class="post-container  mt-12">
     <div v-for="post in posts" :key="post.id">
         <div v-if="post.gif" class="posts">
             <router-link :to="{path: `/post/${post.id}`}">
@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .post-container {
-    margin-top: 50px;
+
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
     gap: 25px;
@@ -72,6 +72,12 @@ export default {
 @media only screen and (max-width:500px) {
     .post-container {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+@media only screen and (max-width:300px) {
+    .d-flex {
+        margin-right: 10px;
+        margin-left: 10px;
     }
 }
 </style>

@@ -52,7 +52,7 @@ export default defineComponent({
 <template>
 <div class="space-between d-flex">
     <router-link to="/">
-        <h2>Postonce</h2>
+        <h2 class="title">Postonce</h2>
     </router-link>
     <div class="mobile">
         <router-link to="/">
@@ -89,6 +89,11 @@ export default defineComponent({
     .mobile {
         display: flex;
         margin-bottom: auto;
+    }
+}
+@media only screen and (max-width:300px) {
+    .title {
+        display: none;
     }
 }
 </style>
