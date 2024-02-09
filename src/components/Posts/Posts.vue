@@ -8,7 +8,7 @@
         </div>
         <div class="d-flex">
             <router-link :to="{ path: `/post/${post.id}` }">
-                <p class="my-5 no-underline satesto">{{ post.title }}</p>
+                <p class="my-5 no-underline">{{ post.title }}</p>
             </router-link>
             <img class="mt-1" :src="post.userImage" alt="">
         </div>
@@ -45,7 +45,6 @@ export default {
 
 <style scoped>
 .post-container {
-
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
     gap: 25px;

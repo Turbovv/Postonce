@@ -1,11 +1,11 @@
 <template>
     <div class="post-container">
       <h2>{{ post.title }}</h2>
-      <p class="description">{{ post.description }}</p>
-      <div v-if="post.gif" class="gif-container">
+      <p class="description mb-4">{{ post.description }}</p>
+      <div v-if="post.gif" class="gif-container mb-2">
         <img :src="post.gif" alt="Selected GIF" class="gif-img">
       </div>
-      <div class="user-info">
+      <div class="user-info d-flex">
         <p>{{ post.userNameEmail }}</p>
         <img :src="post.userImage" alt="" class="user-img">
       </div>
@@ -39,23 +39,12 @@ export default {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  h2 {
-    color: #333;
-  }
-  .description {
-    color: #666;
-    margin-bottom: 15px;
-  }
-  .gif-container {
-    margin-bottom: 15px;
-  }
   .gif-img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
   }
   .user-info {
-    display: flex;
     align-items: center;
   }
   .user-info p {
