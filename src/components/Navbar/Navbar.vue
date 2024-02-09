@@ -33,6 +33,7 @@ export default defineComponent({
                 });
             } else {
                 this.user = null;
+                this.$router.push('/')
             }
         });
     },
