@@ -43,9 +43,6 @@ export default defineComponent({
                 this.Modal = true;
             }
         },
-        getUserAvatarUrl(avatar) {
-            return `https://cdn.discordapp.com/avatars/${this.user.id}/${avatar}.png`;
-        },
     },
 });
 </script>
