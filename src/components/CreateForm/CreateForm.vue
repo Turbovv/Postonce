@@ -3,7 +3,6 @@ import GiphyAPI from '../../services/GiphyAPI'
 import { citiesColRef } from "../../services/firebase";
 import { addDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { firebaseApp } from '../../services/firebase';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 import JSConfetti from 'js-confetti'

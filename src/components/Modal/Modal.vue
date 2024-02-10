@@ -1,7 +1,6 @@
 <script>
 import GoogleAuth from '../GoogleAuth/GoogleAuth.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { firebaseApp } from '../../services/firebase';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 export default {
     components: {

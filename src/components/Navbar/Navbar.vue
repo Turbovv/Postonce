@@ -3,7 +3,6 @@ import { defineComponent } from 'vue';
 import AuthModal from '../AuthModal/AuthModal.vue'
 import Modal from '../Modal/Modal.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { firebaseApp } from '../../services/firebase';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 export default defineComponent({
