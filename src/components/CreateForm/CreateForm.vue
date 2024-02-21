@@ -100,7 +100,7 @@ export default {
                 </li>
             </ul>
         </div>
-        <button type="submit" class="btn-save text-white rounded">Save</button>
+        <button type="submit" class="btn-save text-white rounded">Post</button>
         <p v-if="errorMSG" class="error-msg text-red">Nope.</p>
     </form>
 </div>
